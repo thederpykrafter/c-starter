@@ -1,5 +1,7 @@
-#include <stdio.h>
+#include "colors.h"
 
 int main() {
-  printf("Hello, world!\n");
+  printc("green", "Hello,");
+  printc("blue", " world!\n");
+  return 0;
 }
