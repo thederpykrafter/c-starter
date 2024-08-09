@@ -42,3 +42,15 @@ void printc(const char *color_name, const char *text) {
     // If color name is not found
     printf("Unknown color: %s\n", color_name);
 }
+
+void enter_buffer() {
+  printf("\x1b[?1049h");
+}
+
+void exit_buffer() {
+  printf("\x1b[?1049l");
+}
+
+void clear_term() {
+    printf("\x1b[2J\x1b[H");
+}
