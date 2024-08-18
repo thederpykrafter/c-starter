@@ -10,22 +10,17 @@ all: build install
 test: build run
 
 build: src/main.c
-	@if [ ! -d bin ]; then mkdir bin; fi
-	@$(CC) $(CFLAGS) -o bin/$(OUT_FILE) src/main.c
-	@echo -e "\x1b[92mCompiled\x1b[m bin/$(OUT_FILE)"
+	@[[ ! -d bin ]] && mkdir bin
+	$(CC) $(CFLAGS) -o bin/$(OUT_FILE) src/main.c
 
 install: bin/$(OUT_FILE)
-	@echo -e "\x1b[94mInstalling\x1b[m bin/$(OUT_FILE)"
-	@sudo cp bin/$(OUT_FILE) /usr/bin
-	@echo -e "\x1b[92mInstalled\x1b[m $(OUT_FILE)"
+	cp bin/$(OUT_FILE) /usr/bin
 
 uninstall: bin/$(OUT_FILE)
-	@sudo rm -f /usr/bin/$(OUT_FILE)
-	@echo -e "\x1b[91mUninstalled \x1b[m$(OUT_FILE)"
+	rm -f /usr/bin/$(OUT_FILE)
 
 run:
-	@./bin/test_prog
+	./bin/$(OUT_FILE)
 
 clean veryclean:
-	@rm -f bin/$(OUT_FILE)
-	@echo -e "\x1b[91mRemoved \x1b[mbin/$(OUT_FILE)"
+	rm -f bin/$(OUT_FILE)
