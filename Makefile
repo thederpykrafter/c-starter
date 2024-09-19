@@ -10,7 +10,7 @@ all: build install
 test: build run
 
 build: src/main.c
-	@[[ ! -d bin ]] && mkdir bin
+	@if [[ ! -d bin ]]; then mkdir bin; fi
 	$(CC) $(CFLAGS) -o bin/$(OUT_FILE) src/main.c
 
 install: bin/$(OUT_FILE)
